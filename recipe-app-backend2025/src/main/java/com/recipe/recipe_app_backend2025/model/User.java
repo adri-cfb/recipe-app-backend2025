@@ -1,4 +1,5 @@
 package com.recipe.recipe_app_backend2025.model;
+import com.recipe.recipe_app_backend2025.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -13,7 +14,7 @@ public class User {
     private String username;
 
     @Email (message= "Email should be valid")
-    @NotBlank(message="Email in mandatory")
+    @NotBlank(message="Email is mandatory")
     private String email;
 
     @NotBlank(message = "Password is mandatory")
@@ -21,6 +22,10 @@ public class User {
 
     @Enumerated (EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Recipe> recipes;
+
 
     public User () {}
 
@@ -45,4 +50,7 @@ public class User {
 
     public Role getRole() {return role;}
     public void setRole(Role role) {this.role = role;}
+
+    public List<Recipe> getRecipes() {return recipes;}
+    public void setRecipes(List<Recipe> recipes) {this.recipes = recipes;}
 }
