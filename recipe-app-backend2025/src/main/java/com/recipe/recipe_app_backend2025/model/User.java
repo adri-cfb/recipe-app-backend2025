@@ -23,9 +23,11 @@ public class User {
     @Enumerated (EnumType.STRING)
     private Role role;
 
+    //TODO: Check
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Recipe> recipes;
 
+    //TODO: confirmar con Lisa Lombok y borrar Getters Setters contructores, etc
 
     public User () {}
 

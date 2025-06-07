@@ -28,6 +28,8 @@ public class Ingredient {
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
+    //TODO: confirmar con Lisa Lombok y borrar Getters Setters contructores, etc
+
     public Ingredient (){
     }
 

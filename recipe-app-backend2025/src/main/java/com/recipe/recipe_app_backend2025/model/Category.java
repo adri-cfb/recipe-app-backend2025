@@ -26,6 +26,7 @@ public class Category {
         this.type = type;
     }
 
+    //TODO: confirmar con Lisa Lombok y borrar Getters Setters contructores, etc
     public Long getId() {
         return id;
     }

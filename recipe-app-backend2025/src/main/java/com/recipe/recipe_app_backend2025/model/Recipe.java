@@ -38,6 +38,8 @@ public class Recipe {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    //TODO: confirmar con Lisa Lombok y borrar Getters Setters contructores, etc
+
     public Recipe () {
     }
 
