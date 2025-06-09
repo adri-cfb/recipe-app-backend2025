@@ -3,9 +3,15 @@ package com.recipe.recipe_app_backend2025.model;
 import com.recipe.recipe_app_backend2025.enums.CategoryType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import java.util.List;
 
-@Entity
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Category {
 
     @Id
@@ -18,34 +24,6 @@ public class Category {
 
     @OneToMany (mappedBy = "category", cascade = CascadeType.ALL)
     private List<Recipe> recipes;
-
-    public Category() {
-    }
-
-    public Category(CategoryType type) {
-        this.type = type;
-    }
-
-    //TODO: confirmar con Lisa Lombok y borrar Getters Setters contructores, etc
-    public Long getId() {
-        return id;
-    }
-
-    public CategoryType getType() {
-        return type;
-    }
-
-    public void setType(CategoryType type) {
-        this.type = type;
-    }
-
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 
 }
 
