@@ -1,4 +1,58 @@
 package com.recipe.recipe_app_backend2025.service;
 
-public class UserService {
+import com.recipe.recipe_app_backend2025.model.User;
+import com.recipe.recipe_app_backend2025.repository.UserRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@Transactional
+public class UserService{
+
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<User> getAllUsers () {
+        return userRepository.findAll();
+    }
+
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username)
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email)
+    }
+
+    public User createUser(User user){
+        return userRepository.save(user);
+    }
+
+    public Optional <User> updateUser(Long id, User updateUser){
+        return userRepository.findById(id).map(existingUser -> {
+            existingUser.setUsername(updateUser.getUsername());
+            existingUser.setEmail(updateUser.getEmail());
+            existingUser.setPassword(updateUser.getPassword());
+            existingUser.setRole(updateUser.getRole());
+            return userRepository.save(existingUser);
+        })
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
+
 }
