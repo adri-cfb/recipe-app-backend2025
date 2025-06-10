@@ -7,6 +7,7 @@ import com.recipe.recipe_app_backend2025.model.Category;
 import com.recipe.recipe_app_backend2025.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Optional
 
 
 
@@ -52,18 +53,16 @@ public class RecipeService {
         return recipeRepository.findById(id);
     }
 
-    public Recipe updateRecipe(Long id, Recipe recipe) {
-        return recipeRepository.findById(id)
-            .map (existingRecipe -> {
-                existingRecipe.setTitle(recipe.getTitle());
-                existingRecipe.setCalories(recipe.getCalories());
-                existingRecipe.setServings(recipe.getServings());
-                existingRecipe.setFoodType(recipe.getFoodType());
-                existingRecipe.setCategory(recipe.getCategory());
-                existingRecipe.setIngredients(recipe.getIngredients());
-                return recipeRepository.save(recipe);
-            })
-                .orElseThrow(()-> new RuntimeException("Recipe not found with id: " + id));
+    public Optional<Recipe> updateRecipe(Long id, Recipe updatedRecipe) {
+        return recipeRepository.findById(id).map (existingRecipe -> {
+            existingRecipe.setTitle(updatedRecipe.getTitle());
+            existingRecipe.setCalories(updatedRecipe.getCalories());
+            existingRecipe.setServings(updatedRecipe.getServings());
+            existingRecipe.setFoodType(updatedRecipe.getFoodType());
+            existingRecipe.setCategory(updatedRecipe.getCategory());
+            existingRecipe.setIngredients(updatedRecipe.getIngredients());
+            return recipeRepository.save(existingRecipe);
+        })
     }
 
     public void deleteRecipe(Long id) {
