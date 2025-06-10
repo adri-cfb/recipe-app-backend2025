@@ -2,6 +2,7 @@ package com.recipe.recipe_app_backend2025.controller;
 
 import com.recipe.recipe_app_backend2025.enums.FoodType;
 import com.recipe.recipe_app_backend2025.model.Recipe;
+import com.recipe.recipe_app_backend2025.repository.RecipeRepository;
 import com.recipe.recipe_app_backend2025.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,12 @@ import java.util.Optional;
 public class RecipeController {
 
     private final RecipeService recipeService;
+    private final RecipeRepository recipeRepository;
 
     @Autowired
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService, RecipeRepository recipeRepository) {
         this.recipeService = recipeService;
+        this.recipeRepository = recipeRepository;
     }
 
     //GET all recipes
@@ -45,8 +48,18 @@ public class RecipeController {
 
     //PUT update existing recipe
     @PutMapping("/{id}")
-    public ResponseEntity<Recipe> updateRecipe(@PathVariable Long id, @RequestBody Recipe recipe){
-        return ResponseEntity.ok(recipeService.updateRecipe(id, recipe));
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable Long id, @RequestBody Recipe updateRecipe){
+        return recipeRepository.findBy(id).map(existingRecipe -> {
+            existingRecipe.setTitle(updateRecipe.getTitle());
+            existingRecipe.setServings(updateRecipe.getServings());
+            existingRecipe.setCalories(updateRecipe.getCalories());
+            existingRecipe.setFoodType(updateRecipe.getFoodType());
+            existingRecipe.setCategory(updateRecipe.getCategory());
+            existingRecipe.setIngredients(updateRecipe.getIngredients());
+            Recipe update = recipeRepository.save(existingRecipe);
+            return ResponseEntity.ok(update);
+        }).orElse (ResponseEntity.notFound().build());
+
     }
 
     //DELETE recipe
@@ -58,7 +71,7 @@ public class RecipeController {
 
     @GetMapping ("/foodType/{foodType}")
     public ResponseEntity<List<Recipe>> getRecipeByFoodType(@PathVariable FoodType foodType){
-        List<Recipe> recipes = recipeService.getRecipesByFoodType();
+        List<Recipe> recipes = recipeService.getRecipesByFoodType(foodType);
         return ResponseEntity.ok(recipes);
     }
 

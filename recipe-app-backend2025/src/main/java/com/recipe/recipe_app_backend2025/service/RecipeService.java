@@ -1,10 +1,14 @@
 package com.recipe.recipe_app_backend2025.service;
 
+import com.recipe.recipe_app_backend2025.enums.CategoryType;
 import com.recipe.recipe_app_backend2025.enums.FoodType;
 import com.recipe.recipe_app_backend2025.model.Recipe;
+import com.recipe.recipe_app_backend2025.model.Category;
 import com.recipe.recipe_app_backend2025.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +27,6 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    //TODO to review
     public List<Recipe> getRecipesByUserId(Long userId) {
         return recipeRepository.findAll()
                 .stream()
@@ -31,11 +34,10 @@ public class RecipeService {
                 .toList();
     }
 
-    //TODO review
-    public List<Recipe> getRecipesByCategory(Category category) {
+    public List<Recipe> getRecipesByCategory(CategoryType categoryType) {
         return recipeRepository.findAll()
                 .stream()
-                .filter(recipe -> recipe.getCategory() != null && recipe.getCategory().equals(category))
+                .filter(recipe -> recipe.getCategory() != null && recipe.getCategory().equals(categoryType))
                 .toList();
     }
 
