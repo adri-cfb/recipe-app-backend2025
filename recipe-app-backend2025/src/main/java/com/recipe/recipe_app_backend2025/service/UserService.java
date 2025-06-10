@@ -1,13 +1,13 @@
 package com.recipe.recipe_app_backend2025.service;
 
+import java.util.Optional;
+import java.util.List;
 import com.recipe.recipe_app_backend2025.model.User;
 import com.recipe.recipe_app_backend2025.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -29,11 +29,11 @@ public class UserService{
     }
 
     public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username)
+        return userRepository.findByUsername(username);
     }
 
     public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email)
+        return userRepository.findByEmail(email);
     }
 
     public User createUser(User user){
@@ -47,7 +47,7 @@ public class UserService{
             existingUser.setPassword(updateUser.getPassword());
             existingUser.setRole(updateUser.getRole());
             return userRepository.save(existingUser);
-        })
+        });
     }
 
     public void deleteUser(Long id) {

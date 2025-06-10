@@ -7,7 +7,7 @@ import com.recipe.recipe_app_backend2025.model.Category;
 import com.recipe.recipe_app_backend2025.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Optional
+import java.util.Optional;
 
 
 
@@ -62,7 +62,7 @@ public class RecipeService {
             existingRecipe.setCategory(updatedRecipe.getCategory());
             existingRecipe.setIngredients(updatedRecipe.getIngredients());
             return recipeRepository.save(existingRecipe);
-        })
+        });
     }
 
     public void deleteRecipe(Long id) {
