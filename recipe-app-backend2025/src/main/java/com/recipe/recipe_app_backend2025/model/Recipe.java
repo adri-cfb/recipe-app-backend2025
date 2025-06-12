@@ -1,5 +1,6 @@
 package com.recipe.recipe_app_backend2025.model;
 
+import com.recipe.recipe_app_backend2025.enums.CategoryType;
 import com.recipe.recipe_app_backend2025.enums.FoodType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -11,7 +12,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"user", "ingredients", "category"})
+@ToString(exclude = {"user", "ingredients",})
 public class Recipe {
 
     @Id
@@ -30,6 +31,9 @@ public class Recipe {
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
 
+    @Enumerated(EnumType.STRING)
+    private CategoryType categoryType;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -37,9 +41,6 @@ public class Recipe {
     @OneToMany (mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
 
 
 }

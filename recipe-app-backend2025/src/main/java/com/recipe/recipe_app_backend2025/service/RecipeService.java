@@ -3,7 +3,6 @@ package com.recipe.recipe_app_backend2025.service;
 import com.recipe.recipe_app_backend2025.enums.CategoryType;
 import com.recipe.recipe_app_backend2025.enums.FoodType;
 import com.recipe.recipe_app_backend2025.model.Recipe;
-import com.recipe.recipe_app_backend2025.model.Category;
 import com.recipe.recipe_app_backend2025.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +37,7 @@ public class RecipeService {
     public List<Recipe> getRecipesByCategory(CategoryType categoryType) {
         return recipeRepository.findAll()
                 .stream()
-                .filter(recipe -> recipe.getCategory() != null && recipe.getCategory().equals(categoryType))
+                .filter(recipe -> recipe.getCategoryType() != null && recipe.getCategoryType().equals(categoryType))
                 .toList();
     }
 
@@ -59,7 +58,7 @@ public class RecipeService {
             existingRecipe.setCalories(updatedRecipe.getCalories());
             existingRecipe.setServings(updatedRecipe.getServings());
             existingRecipe.setFoodType(updatedRecipe.getFoodType());
-            existingRecipe.setCategory(updatedRecipe.getCategory());
+            existingRecipe.setCategoryType(updatedRecipe.getCategoryType());
             existingRecipe.setIngredients(updatedRecipe.getIngredients());
             return recipeRepository.save(existingRecipe);
         });

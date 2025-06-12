@@ -62,7 +62,7 @@ public class RecipeController {
         recipeService.deleteRecipe(id);
         return ResponseEntity.noContent().build();
     }
-
+    //GET recipes by FoodType
     @GetMapping ("/foodType/{foodType}")
     public ResponseEntity<List<Recipe>> getRecipeByFoodType(@PathVariable FoodType foodType){
         List<Recipe> recipes = recipeService.getRecipesByFoodType(foodType);

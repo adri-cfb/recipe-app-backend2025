@@ -23,8 +23,6 @@ public class Category {
     @NotNull(message= "Category type is required")
     private CategoryType type;
 
-    @OneToMany (mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Recipe> recipes;
 
 }
 
