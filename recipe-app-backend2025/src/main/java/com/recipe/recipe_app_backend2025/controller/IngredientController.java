@@ -10,7 +10,7 @@ import java.util.List;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/ingredients")
+@RequestMapping("/api/ingredients")
 public class IngredientController {
 
     @Autowired
@@ -34,8 +34,15 @@ public class IngredientController {
         return ResponseEntity.ok(saved);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Ingredient> updateIngredient(@PathVariable Long id, @Valid @RequestBody Ingredient updateIngredient) {
+        return ingredientService.updateIngredient(id, updateIngredient)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity <Void> deleteIngredien(@PathVariable Long id) {
+    public ResponseEntity <Void> deleteIngredient(@PathVariable Long id) {
         if (ingredientService.findById(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -43,6 +50,11 @@ public class IngredientController {
         return ResponseEntity.noContent().build();
     }
 
+//    @DeleteMapping("/all")
+//    public ResponseEntity<Void> deleteAllIngredients() {
+//        ingredientService.deleteAllIngredients();
+//        return ResponseEntity.noContent().build();
+//    }
 
 }
 

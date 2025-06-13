@@ -49,8 +49,8 @@ public class RecipeController {
 
     //PUT update existing recipe
     @PutMapping("/{id}")
-    public ResponseEntity<Recipe> updateRecipe(@PathVariable Long id,@Valid @RequestBody Recipe recipe){
-        return recipeService.updateRecipe(id,recipe)
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable Long id,@Valid @RequestBody Recipe updateRecipe){
+        return recipeService.updateRecipe(id,updateRecipe)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
 
@@ -62,6 +62,7 @@ public class RecipeController {
         recipeService.deleteRecipe(id);
         return ResponseEntity.noContent().build();
     }
+
     //GET recipes by FoodType
     @GetMapping ("/foodType/{foodType}")
     public ResponseEntity<List<Recipe>> getRecipeByFoodType(@PathVariable FoodType foodType){
@@ -75,5 +76,11 @@ public class RecipeController {
         List<Recipe> recipes = recipeService.getRecipesByCategory(category);
         return ResponseEntity.ok(recipes);
     }
+
+//    @DeleteMapping("/all")
+//    public ResponseEntity<Void> deleteAllRecipes() {
+//        recipeService.deleteAllRecipes();
+//        return ResponseEntity.noContent().build();
+//    }
 
 }

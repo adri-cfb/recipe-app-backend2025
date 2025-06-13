@@ -32,11 +32,13 @@ public class UserController{
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
     @PostMapping
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User created = userService.createUser(user);
         return ResponseEntity.ok(created);
     }
+
 
     @PutMapping ("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User user) {
@@ -50,6 +52,13 @@ public class UserController{
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
+
+//    @DeleteMapping("/all")
+//    public ResponseEntity<Void> deleteAllUsers() {
+//        userService.deleteAllUsers();
+//        return ResponseEntity.noContent().build();
+//    }
+
 }
 
 

@@ -1,6 +1,8 @@
 package com.recipe.recipe_app_backend2025.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.recipe.recipe_app_backend2025.enums.MeasurementUnit;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -31,6 +33,7 @@ public class Ingredient {
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
+    @JsonIgnore
     private Recipe recipe;
 
 }

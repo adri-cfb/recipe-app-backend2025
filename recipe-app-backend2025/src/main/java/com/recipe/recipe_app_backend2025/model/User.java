@@ -1,7 +1,7 @@
 package com.recipe.recipe_app_backend2025.model;
 
 import com.recipe.recipe_app_backend2025.enums.Role;
-import com.recipe.recipe_app_backend2025.model.Recipe;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -33,6 +33,7 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Recipe> recipes;
 
 }

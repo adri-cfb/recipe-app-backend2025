@@ -29,4 +29,16 @@ public class IngredientService {
     public void deleteById(Long id) {
         ingredientRepository.deleteById(id);
     }
+
+    public Optional<Ingredient> updateIngredient(Long id, Ingredient updateIngredient) {
+        return ingredientRepository.findById(id).map(existing ->{
+            existing.setName(updateIngredient.getName());
+            existing.setQuantity(updateIngredient.getQuantity());
+            existing.setMeasurementUnit(updateIngredient.getMeasurementUnit());
+            return ingredientRepository.save(existing);
+        });
+    }
+
+//    public void deleteAllIngredients() {ingredientRepository.deleteAll();}
+
 }
