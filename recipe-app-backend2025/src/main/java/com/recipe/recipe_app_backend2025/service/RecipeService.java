@@ -2,6 +2,7 @@ package com.recipe.recipe_app_backend2025.service;
 
 import com.recipe.recipe_app_backend2025.enums.CategoryType;
 import com.recipe.recipe_app_backend2025.enums.FoodType;
+import com.recipe.recipe_app_backend2025.exception.RecipeNotFoundException;
 import com.recipe.recipe_app_backend2025.model.Recipe;
 import com.recipe.recipe_app_backend2025.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,9 @@ public class RecipeService {
                 .toList();
     }
 
-    public Optional<Recipe> getById(Long id) {
-        return recipeRepository.findById(id);
+    public Recipe getById(Long id) {
+        return recipeRepository.findById(id)
+                .orElseThrow(() -> new RecipeNotFoundException("The recipe with ID " + id + " does not exist"));
     }
 
     public Optional<Recipe> updateRecipe(Long id, Recipe updatedRecipe) {

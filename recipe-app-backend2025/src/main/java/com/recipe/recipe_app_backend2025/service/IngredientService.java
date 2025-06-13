@@ -1,5 +1,6 @@
 package com.recipe.recipe_app_backend2025.service;
 
+import com.recipe.recipe_app_backend2025.exception.IngredientNotFoundException;
 import com.recipe.recipe_app_backend2025.model.Ingredient;
 import com.recipe.recipe_app_backend2025.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class IngredientService {
 
     public Ingredient save(Ingredient ingredient) {
         return ingredientRepository.save(ingredient);
+    }
+
+    public Ingredient getById(Long id) {
+        return ingredientRepository.findById(id)
+                .orElseThrow(() -> new IngredientNotFoundException("Ingredient with id " + id + " is not found"));
     }
 
     public void deleteById(Long id) {

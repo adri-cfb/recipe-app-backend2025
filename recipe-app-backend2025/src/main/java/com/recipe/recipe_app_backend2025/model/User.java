@@ -36,4 +36,6 @@ public class User {
     @JsonIgnore
     private List<Recipe> recipes;
 
+
+
 }

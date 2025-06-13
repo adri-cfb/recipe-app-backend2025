@@ -2,6 +2,9 @@ package com.recipe.recipe_app_backend2025.service;
 
 import java.util.Optional;
 import java.util.List;
+
+import com.recipe.recipe_app_backend2025.exception.EmailExistsException;
+import com.recipe.recipe_app_backend2025.exception.UserNotFoundException;
 import com.recipe.recipe_app_backend2025.model.User;
 import com.recipe.recipe_app_backend2025.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -24,8 +27,9 @@ public class UserService{
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with id " + id + " is not found"));
     }
 
     public Optional<User> findByUsername(String username) {
@@ -37,6 +41,10 @@ public class UserService{
     }
 
     public User createUser(User user){
+        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
+            throw new EmailExistsException(user.getEmail());
+        }
         return userRepository.save(user);
     }
 

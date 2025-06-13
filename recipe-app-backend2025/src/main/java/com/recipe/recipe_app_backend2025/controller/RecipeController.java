@@ -3,7 +3,6 @@ package com.recipe.recipe_app_backend2025.controller;
 import com.recipe.recipe_app_backend2025.enums.FoodType;
 import com.recipe.recipe_app_backend2025.enums.CategoryType;
 import com.recipe.recipe_app_backend2025.model.Recipe;
-import com.recipe.recipe_app_backend2025.repository.RecipeRepository;
 import com.recipe.recipe_app_backend2025.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/recipes")
@@ -34,9 +32,8 @@ public class RecipeController {
     //GET recipes by ID
     @GetMapping("/{id}")
     public ResponseEntity<Recipe> getRecipeById(@PathVariable Long id){
-        return recipeService.getById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Recipe recipe = recipeService.getById(id);
+        return ResponseEntity.ok(recipe);
     }
 
     //POST create new recipe
