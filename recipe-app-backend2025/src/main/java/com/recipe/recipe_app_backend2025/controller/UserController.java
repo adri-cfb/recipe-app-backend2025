@@ -3,6 +3,7 @@ package com.recipe.recipe_app_backend2025.controller;
 import com.recipe.recipe_app_backend2025.model.User;
 import com.recipe.recipe_app_backend2025.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +35,8 @@ public class UserController{
 
     @PostMapping
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-        User created = userService.createUser(user);
-        return ResponseEntity.ok(created);
+        User createdUser = userService.createUser(user);
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
 
