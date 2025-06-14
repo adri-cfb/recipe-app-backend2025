@@ -14,6 +14,17 @@ REST API built with Java and Spring Boot for managing healthy recipes. Allows us
 - Postman (for testing)
 
 ---
+## Diagarams
+
+### Draft Diagram
+![image.png](recipe-app-backend2025/src/main/resources/static/image.png)
+![image (1).png](recipe-app-backend2025/src/main/resources/static/image%20%281%29.png)
+
+### Final Diagram
+<div class="sl-block is-focused" data-block-type="image" data-name="image-dba733" style="width: 374px; height: 707.143px; left: 17.3735px; top: 0px; min-width: 1px; min-height: 1px;" data-origin-id="25985c2af301b3e0cbd83f4d59dd69d0"><div class="sl-block-content" style="z-index: 13; transition-duration: 0.6s; transition-delay: 0.3s;" data-animation-type="slide-left"><img style="" data-natural-width="714" data-natural-height="1350" data-lazy-loaded="" src="https://s3.amazonaws.com/media-p.slid.es/uploads/2943065/images/12200616/DiagramIntellij.png"></div></div>
+
+
+---
 
 ##  Project Structure
 
@@ -98,7 +109,7 @@ All handled with a global `@ControllerAdvice` handler.
 ---
 
 ##  POST Request Example (User)
-
+[Postman_testresults_Adriana_Finalproyect.pdf](recipe-app-backend2025/src/main/resources/static/Postman_testresults_Adriana_Finalproyect.pdf)
 ``` json
 {
 "username": "adriana",
