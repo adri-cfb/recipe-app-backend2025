@@ -1,4 +1,4 @@
-# Healthy Recipe API
+# 🍎 Healthy Recipe API 🍏
 
 REST API built with Java and Spring Boot for managing healthy recipes. Allows users to create accounts, add recipes with their ingredients, and categorize them by food type and category.
 
@@ -108,10 +108,16 @@ All handled with a global `@ControllerAdvice` handler.
 ```
 
 ---
+##  Proyect tracking with Trello & Slide
 
-##  Author
+- https://trello.com/b/8tm28IRj
+- https://slides.com/d/kRmR5BE/speaker/ei6k8q8
+---
 
-Adriana Fernández.
+##  🌟 Author
+
+### Adriana Fernández. 
+www.linkedin.com/in/adriana-fernandez-bracamonte
  
 Final project 
 Ironhack - Back-end BootCamp 2025

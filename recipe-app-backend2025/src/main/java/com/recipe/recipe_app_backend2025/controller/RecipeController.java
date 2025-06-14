@@ -74,10 +74,6 @@ public class RecipeController {
         return ResponseEntity.ok(recipes);
     }
 
-//    @DeleteMapping("/all")
-//    public ResponseEntity<Void> deleteAllRecipes() {
-//        recipeService.deleteAllRecipes();
-//        return ResponseEntity.noContent().build();
-//    }
+
 
 }
