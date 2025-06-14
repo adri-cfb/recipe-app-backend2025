@@ -10,6 +10,7 @@ REST API built with Java and Spring Boot for managing healthy recipes. Allows us
 - Spring Boot
 - Spring Data JPA
 - MySQL
+- Lombok
 - Postman (for testing)
 
 ---
