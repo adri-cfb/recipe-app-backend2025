@@ -4,5 +4,5 @@ public enum CategoryType {
     BREAKFAST,
     LUNCH,
     DINNER,
-    SNACK
+    SNACK,
 }
