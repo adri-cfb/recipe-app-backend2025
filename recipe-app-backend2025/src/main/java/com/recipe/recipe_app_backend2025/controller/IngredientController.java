@@ -48,11 +48,6 @@ public class IngredientController {
         return ResponseEntity.noContent().build();
     }
 
-//    @DeleteMapping("/all")
-//    public ResponseEntity<Void> deleteAllIngredients() {
-//        ingredientService.deleteAllIngredients();
-//        return ResponseEntity.noContent().build();
-//    }
 
 }
 
