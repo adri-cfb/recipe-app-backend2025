@@ -88,7 +88,7 @@ All handled with a global `@ControllerAdvice` handler.
 
 ---
 
-##  Security
+##  Security.
 
 - Login con `/api/auth/login`
 - Autenticación vía JWT Token
