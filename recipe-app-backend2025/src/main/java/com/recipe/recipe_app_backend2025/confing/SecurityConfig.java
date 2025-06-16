@@ -1,6 +1,7 @@
 package com.recipe.recipe_app_backend2025.config;
 
 
+import com.recipe.recipe_app_backend2025.security.JwtFilter;
 import com.recipe.recipe_app_backend2025.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

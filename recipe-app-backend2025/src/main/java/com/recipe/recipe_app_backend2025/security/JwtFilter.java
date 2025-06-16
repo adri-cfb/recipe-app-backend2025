@@ -1,7 +1,7 @@
-package com.recipe.recipe_app_backend2025.config;
+package com.recipe.recipe_app_backend2025.security;
 
-import com.recipe.recipe_app_backend2025.security.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
+import com.recipe.recipe_app_backend2025.security.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
