@@ -11,6 +11,7 @@ REST API built with Java and Spring Boot for managing healthy recipes. Allows us
 - Spring Data JPA
 - MySQL
 - Lombok
+- Spring Security + JWT
 - Postman (for testing)
 
 ---
@@ -29,13 +30,16 @@ REST API built with Java and Spring Boot for managing healthy recipes. Allows us
 
 ```
 recipe-app-backend2025
+   ── config
    ── controller
+   ── dto
    ── service
+   ── enums
+   ── exception
    ── model
    ── repository
-   ── dto
-   ── exception
-   ── config (pending to be completed)
+   ── security
+
 ```
 
 ---
@@ -86,24 +90,29 @@ All handled with a global `@ControllerAdvice` handler.
 
 ##  Security
 
-`Not implemented. Planned for future improvements.`
-
+- Login con `/api/auth/login`
+- Autenticación vía JWT Token
+- Rutas públicas: `/api/auth/**`
+- Todas las demás requieren token
+- JWT extraído y validado con filtro (`JwtFilter`)
+- Usuarios autenticados con `CustomUserDetailsService`
 ---
 
 ##  Completed Features
 
-- Full CRUD for users, recipes, and ingredients
-- Entity relationships
-- Annotated validations
-- Custom error handling
-- Implemented UserDTO
+- Full CRUD para usuarios, recetas e ingredientes
+- Relaciones entre entidades
+- Validaciones con anotaciones
+- Manejo de errores personalizado
+- Implementación de UserDTO, RecipeDTO, IngredientDTO
+- Seguridad con Spring Security + JWT
+- Login de usuarios
 
 ---
 
 ##  Future Improvements
 
-- Authentication and authorization with Spring Security and JWT
-- Implemented RecipeDTO and IngredientDTO
+- Frontend
 
 ---
 
